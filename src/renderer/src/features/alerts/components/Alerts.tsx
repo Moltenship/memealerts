@@ -1,12 +1,6 @@
 import { MemeAlertsOptions, getAlertArrayBuffer } from '@renderer/api/alertsApi'
 import { Button } from '@renderer/components/ui/Button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from '@renderer/components/ui/Card'
+import { Card, CardContent, CardHeader, CardTitle } from '@renderer/components/ui/Card'
 import { useGetAlerts } from '@renderer/queries/useGetAlerts'
 import { CopyIcon } from 'lucide-react'
 import { useState } from 'react'
@@ -41,11 +35,11 @@ export const Alerts = ({ streamerId }: Props) => {
           Next
         </Button>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {data.map((memeAlert) => (
           <Card key={memeAlert.id}>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-3">
                 {memeAlert.name}
                 <Button
                   variant="ghost"
@@ -58,11 +52,10 @@ export const Alerts = ({ streamerId }: Props) => {
                   <CopyIcon size="1rem" />
                 </Button>
               </CardTitle>
-              <CardDescription>{memeAlert.description}</CardDescription>
             </CardHeader>
             <CardContent>
               <img
-                className="h-36 w-36 object-contain"
+                className="h-36 w-full object-contain"
                 src={memeAlert.alertAnimatedPreview}
                 alt=""
               />
