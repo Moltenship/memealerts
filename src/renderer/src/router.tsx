@@ -1,10 +1,17 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom'
+import { Navigate, createHashRouter } from 'react-router-dom'
 import { alertRoutes } from './features/alerts/routes'
+import { MainLayout } from './components/ui/MainLayout'
 
-export const router = createBrowserRouter([
-  ...alertRoutes,
+export const router = createHashRouter([
   {
-    path: '/',
-    element: <Navigate to="/alerts/uselessmouth"></Navigate>
+    path: '',
+    element: <MainLayout></MainLayout>,
+    children: [
+      ...alertRoutes,
+      {
+        path: '/',
+        element: <Navigate to="/alerts/uselessmouth"></Navigate>
+      }
+    ]
   }
 ])

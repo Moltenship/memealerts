@@ -8,8 +8,6 @@ export const AlertsPage: FC = () => {
   const { data: user } = useGetUser(params.user!)
   return (
     <div>
-      <h1>{user?.id}</h1>
-
       <Suspense fallback={<div>Loading...</div>}>
         <Alerts streamerId={user.id}></Alerts>
       </Suspense>

@@ -1,19 +1,16 @@
+import { MemeAlert } from '@renderer/types/memeAlert'
 import { apiClient } from './apiClient'
 import wretch from 'wretch'
 
-export type MemeAlert = {
-  id: string
-  name: string
-  fallbackUrl: string
-  alertUrl: string
-  alertPreview: string
-  description: string
-  alertAnimatedPreview: string
+export type MemeAlertsOptions = {
+  streamerId: string
+  pageSize: number
+  skip: number
 }
 
-export async function getUserAlerts(userId: string) {
+export async function getUserAlerts(options: MemeAlertsOptions) {
   const alerts = await apiClient
-    .post({ streamerId: userId, pageSize: 20, skip: 0 }, '/sticker/streamer-area/last-sent-by-all')
+    .post(options, '/sticker/streamer-area/last-sent-by-all')
     .json<MemeAlert[]>()
   return alerts
 }
