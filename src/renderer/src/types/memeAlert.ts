@@ -1,3 +1,9 @@
+export type VideoData = {
+  aspectRatio: number
+  duration: number
+  height: number
+}
+
 export type MemeAlert = {
   id: string
   name: string
@@ -6,4 +12,5 @@ export type MemeAlert = {
   alertPreview: string
   description: string
   alertAnimatedPreview: string
+  videoData: VideoData
 }
