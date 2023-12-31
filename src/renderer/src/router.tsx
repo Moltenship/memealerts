@@ -10,7 +10,7 @@ export const router = createHashRouter([
       ...alertRoutes,
       {
         path: '/',
-        element: <Navigate to="/alerts/uselessmouth"></Navigate>
+        element: <Navigate to="/last-alerts/uselessmouth"></Navigate>
       }
     ]
   }

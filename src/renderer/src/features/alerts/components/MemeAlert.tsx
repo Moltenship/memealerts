@@ -1,4 +1,4 @@
-import { getAlertArrayBuffer } from '@renderer/api/alertsApi'
+import { copyVideo } from '@renderer/api/memeAlertsApi'
 import { Button } from '@renderer/components/ui/Button'
 import { Card, CardHeader, CardTitle, CardContent } from '@renderer/components/ui/Card'
 import { Skeleton } from '@renderer/components/ui/skeleton'
@@ -10,13 +10,8 @@ type Props = {
   memeAlert: MemeAlertType
 }
 export const MemeAlert = ({ memeAlert }: Props) => {
-  const copyVideo = async () => {
-    const arrayBuffer = await getAlertArrayBuffer(memeAlert.fallbackUrl)
-    window.api.copy(arrayBuffer)
-  }
-
   const handleAlertCopy = () => {
-    toast.promise(copyVideo, {
+    toast.promise(() => copyVideo(memeAlert.fallbackUrl), {
       loading: 'Copying video to clipboard...',
       success: 'Copied to clipboard'
     })

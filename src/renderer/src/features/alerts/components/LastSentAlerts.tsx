@@ -1,6 +1,6 @@
-import { MemeAlertsOptions } from '@renderer/api/alertsApi'
+import { MemeAlertsOptions } from '@renderer/api/memeAlertsApi'
 import { Button } from '@renderer/components/ui/Button'
-import { useGetAlerts } from '@renderer/queries/useGetAlerts'
+import { useGetLastAlerts } from '@renderer/queries/useGetLastAlerts'
 import { useState } from 'react'
 import { Alerts, AlertsSkeleton } from './Alerts'
 
@@ -15,7 +15,7 @@ export const LastSentAlerts = ({ streamerId }: Props) => {
     skip: 0
   }))
 
-  const { data } = useGetAlerts(options)
+  const { data } = useGetLastAlerts(options)
 
   return (
     <div className="container flex flex-col gap-4">
