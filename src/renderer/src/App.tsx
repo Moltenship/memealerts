@@ -1,19 +1,18 @@
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { queryClient } from './queryClient'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ThemeProvider } from './providers/ThemeProvider'
+
 function App(): JSX.Element {
   return (
-    <div>
-      <h1>TEST</h1>
-      <button
-        onClick={async () => {
-          const response = await fetch(
-            '/alerts/64b2779e05b8e6cffe9afd14/29d29391-e995-4645-9321-671f219319da/alert.webm'
-          ).then((res) => res.blob())
-          const arrayBuffer = await response.arrayBuffer()
-          window.api.copy(arrayBuffer)
-        }}
-      >
-        test
-      </button>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <RouterProvider router={router}></RouterProvider>
+      </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
+    </QueryClientProvider>
   )
 }
 
