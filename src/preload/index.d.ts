@@ -4,7 +4,7 @@ declare global {
   interface Window {
     electron: ElectronAPI
     api: {
-      copy: (buffer: ArrayBuffer) => void
+      copy: (buffer: ArrayBuffer, onSuccess: () => void) => void
     }
   }
 }

@@ -4,13 +4,13 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle
 } from '@renderer/components/ui/Card'
 import { useGetAlerts } from '@renderer/queries/useGetAlerts'
 import { CopyIcon } from 'lucide-react'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 type Props = {
   streamerId: string
@@ -45,7 +45,19 @@ export const Alerts = ({ streamerId }: Props) => {
         {data.map((memeAlert) => (
           <Card key={memeAlert.id}>
             <CardHeader>
-              <CardTitle>{memeAlert.name}</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                {memeAlert.name}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={async () => {
+                    const arrayBuffer = await getAlertArrayBuffer(memeAlert.fallbackUrl)
+                    window.api.copy(arrayBuffer, () => toast('Copied to clipboard!'))
+                  }}
+                >
+                  <CopyIcon size="1rem" />
+                </Button>
+              </CardTitle>
               <CardDescription>{memeAlert.description}</CardDescription>
             </CardHeader>
             <CardContent>
@@ -55,16 +67,6 @@ export const Alerts = ({ streamerId }: Props) => {
                 alt=""
               />
             </CardContent>
-            <CardFooter>
-              <Button
-                onClick={async () => {
-                  const arrayBuffer = await getAlertArrayBuffer(memeAlert.fallbackUrl)
-                  window.api.copy(arrayBuffer)
-                }}
-              >
-                <CopyIcon />
-              </Button>
-            </CardFooter>
           </Card>
         ))}
       </div>
