@@ -28,10 +28,13 @@ export const MemeAlert = ({ memeAlert }: Props) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <img
+        <video
           className="h-36 w-full object-contain"
-          src={memeAlert.alertAnimatedPreview}
-          alt={memeAlert.description || memeAlert.name}
+          src={memeAlert.alertUrl}
+          controls={false}
+          autoPlay
+          loop
+          muted
         />
       </CardContent>
     </Card>
