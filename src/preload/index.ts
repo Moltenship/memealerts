@@ -10,7 +10,7 @@ const api = {
    * @param buffer The video buffer to save and copy.
    */
   copy: (buffer: ArrayBuffer): void => {
-    const videoPath = 'test.webm'
+    const videoPath = 'test.mp4'
     const array = new Uint8Array(buffer)
     writeFileSync(videoPath, array)
     const powershellProcess = spawn('powershell.exe', [

@@ -39,7 +39,7 @@ export const Alerts = ({ streamerId }: Props) => {
           <CardFooter>
             <Button
               onClick={async () => {
-                const arrayBuffer = await getAlertArrayBuffer(memeAlert.alertUrl)
+                const arrayBuffer = await getAlertArrayBuffer(memeAlert.fallbackUrl)
                 window.api.copy(arrayBuffer)
               }}
             >
