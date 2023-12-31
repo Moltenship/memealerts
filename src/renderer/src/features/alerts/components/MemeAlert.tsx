@@ -10,10 +10,15 @@ type Props = {
   memeAlert: MemeAlertType
 }
 export const MemeAlert = ({ memeAlert }: Props) => {
-  const handleAlertCopy = async () => {
+  const copyVideo = async () => {
     const arrayBuffer = await getAlertArrayBuffer(memeAlert.fallbackUrl)
-    window.api.copy(arrayBuffer, () => {
-      toast('Copied to clipboard!', { duration: 1500 })
+    window.api.copy(arrayBuffer)
+  }
+
+  const handleAlertCopy = () => {
+    toast.promise(copyVideo, {
+      loading: 'Copying video to clipboard...',
+      success: 'Copied to clipboard'
     })
   }
 

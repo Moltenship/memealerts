@@ -9,7 +9,7 @@ const api = {
    * Saves video and then copies it to the clipboard.
    * @param buffer The video buffer to save and copy.
    */
-  copy: (buffer: ArrayBuffer, onSuccess: () => void): void => {
+  copy: (buffer: ArrayBuffer): void => {
     const videoPath = 'test.mp4'
     const array = new Uint8Array(buffer)
     writeFileSync(videoPath, array)
@@ -22,7 +22,6 @@ const api = {
     ])
     powershellProcess.on('exit', (code) => {
       if (code === 0) {
-        onSuccess()
         console.log('File path copied to clipboard successfully')
       } else {
         console.error(`Error copying file path to clipboard. Exit code: ${code}`)
