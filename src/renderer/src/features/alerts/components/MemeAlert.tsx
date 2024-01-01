@@ -45,6 +45,7 @@ export const MemeAlert = ({ memeAlert }: Props) => {
           controls={false}
           autoPlay
           loop
+          playsInline
           muted={isMuted}
         />
         <Button

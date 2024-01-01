@@ -12,7 +12,11 @@ export const router = createHashRouter([
       ...streamerRoutes,
       {
         path: '/',
-        element: <Navigate to="/last-alerts/uselessmouth"></Navigate>
+        element: <Navigate to="/featured"></Navigate>
+      },
+      {
+        path: '*',
+        element: <Navigate to="/featured"></Navigate>
       }
     ]
   }

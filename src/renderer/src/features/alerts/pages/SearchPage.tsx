@@ -1,4 +1,3 @@
-import { useGetStreamer } from '@renderer/queries/useGetStreamer'
 import { useParams } from 'react-router-dom'
 import { UserAlerts } from '../components/StreamerAlerts'
 import { Suspense } from 'react'
@@ -7,8 +6,9 @@ import { OptionsControls, useOptionsControls } from '@renderer/components/ui/Opt
 
 export const SearchPage = () => {
   const params = useParams()
-  const { data: streamer } = useGetStreamer(params.streamer!)
-  const { options, onPageChange, onSearchChange, searchQuery } = useOptionsControls(streamer.id)
+  const { options, onPageChange, onSearchChange, searchQuery } = useOptionsControls(
+    params.streamer!
+  )
 
   return (
     <div className="flex flex-col gap-4">

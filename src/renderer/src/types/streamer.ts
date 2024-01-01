@@ -7,5 +7,6 @@ export type Channel = {
 export type Streamer = {
   id: string
   avatar: string
+  name: string
   channel: Channel
 }

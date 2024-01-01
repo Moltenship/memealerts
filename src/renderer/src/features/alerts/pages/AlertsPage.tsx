@@ -1,4 +1,3 @@
-import { useGetStreamer } from '@renderer/queries/useGetStreamer'
 import { FC, Suspense } from 'react'
 import { useParams } from 'react-router-dom'
 import { LastSentAlerts } from '../components/LastSentAlerts'
@@ -7,8 +6,8 @@ import { AlertsSkeleton } from '../components/Alerts'
 
 export const AlertsPage: FC = () => {
   const params = useParams()
-  const { data: steamer } = useGetStreamer(params.streamer!)
-  const { options, onPageChange } = useOptionsControls(steamer.id)
+
+  const { options, onPageChange } = useOptionsControls(params.streamer!)
   return (
     <div className="flex flex-col gap-4">
       <OptionsControls
