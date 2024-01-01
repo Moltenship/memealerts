@@ -15,20 +15,6 @@ export default defineConfig({
         '@renderer': resolve('src/renderer/src')
       }
     },
-    server: {
-      proxy: {
-        '/api': {
-          target: 'https://memealerts.com/api',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
-        },
-        '/alerts': {
-          target: 'https://cdn.memealerts.com/p',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/alerts/, '')
-        }
-      }
-    },
     plugins: [react()]
   }
 })

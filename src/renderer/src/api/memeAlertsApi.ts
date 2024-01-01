@@ -30,8 +30,7 @@ export async function getAlerts(options: MemeAlertsOptions) {
 }
 
 export async function getAlertArrayBuffer(alertUrl: string) {
-  const alertId = alertUrl.split('/p')[1]
-  const alert = await wretch('/alerts').get(alertId).blob()
+  const alert = await wretch(alertUrl, { mode: 'no-cors' }).get().blob()
   const alertArrayBuffer = await alert.arrayBuffer()
   return alertArrayBuffer
 }
