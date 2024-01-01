@@ -10,7 +10,6 @@ export type MemeAlertsOptions = {
 }
 
 export async function getLastAlerts(options: MemeAlertsOptions) {
-  console.log(options)
   const alerts = await apiClient
     .post(options, '/sticker/streamer-area/last-sent-by-all')
     .json<MemeAlert[]>()
