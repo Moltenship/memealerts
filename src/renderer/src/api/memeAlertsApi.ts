@@ -39,9 +39,8 @@ export async function getAlertsCatalogue(options: MemeAlertsOptions) {
 }
 
 export async function getAlertArrayBuffer(alertUrl: string) {
-  const alert = await wretch(alertUrl, { mode: 'no-cors' }).get().blob()
-  const alertArrayBuffer = await alert.arrayBuffer()
-  return alertArrayBuffer
+  const arrayBuffer = await wretch(alertUrl).get().arrayBuffer()
+  return arrayBuffer
 }
 
 export async function copyVideo(alertUrl: string) {

@@ -3,7 +3,7 @@ import { Button } from '@renderer/components/ui/Button'
 import { Skeleton } from '@renderer/components/ui/Skeleton'
 import { MemeAlert as MemeAlertType } from '@renderer/types/memeAlert'
 import { CopyIcon, Volume2Icon, VolumeXIcon } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
 type Props = {
@@ -11,6 +11,7 @@ type Props = {
 }
 export const MemeAlert = ({ memeAlert }: Props) => {
   const [isMuted, setIsMuted] = useState(true)
+  const toastIdRef = useRef<string | number | null>(null)
 
   const handleAlertCopy = () => {
     toast.promise(() => copyVideo(memeAlert.fallbackUrl), {
@@ -21,13 +22,23 @@ export const MemeAlert = ({ memeAlert }: Props) => {
 
   useEffect(() => {
     if (!isMuted) {
-      toast(`Currently playing ${memeAlert.name}`, {
+      toastIdRef.current = toast(`Currently playing ${memeAlert.name}`, {
         duration: Infinity,
         action: {
           label: 'Mute',
           onClick: () => setIsMuted(true)
         }
       })
+    }
+    if (isMuted && toastIdRef.current !== null) {
+      toast.dismiss(toastIdRef.current)
+    }
+
+    return () => {
+      if (toastIdRef.current !== null) {
+        toast.dismiss(toastIdRef.current)
+        toastIdRef.current = null
+      }
     }
   }, [isMuted, memeAlert.name])
 
