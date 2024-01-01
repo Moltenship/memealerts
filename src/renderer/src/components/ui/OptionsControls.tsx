@@ -1,5 +1,4 @@
 import { MemeAlertsOptions } from '@renderer/api/memeAlertsApi'
-import { Button } from './Button'
 import { Input } from './Input'
 import { useCallback, useMemo, useState } from 'react'
 import { useDebounce } from 'usehooks-ts'
@@ -46,13 +45,7 @@ export const useOptionsControls = (streamerId: string) => {
   }
 }
 
-export const OptionsControls = ({
-  onPageChange,
-  onSearchChange,
-  pageSize,
-  searchQuery = '',
-  skip
-}: Props) => {
+export const OptionsControls = ({ onSearchChange, searchQuery = '' }: Props) => {
   return (
     <div className="flex gap-4 items-center justify-between">
       {onSearchChange != null && (
