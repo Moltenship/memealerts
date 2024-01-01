@@ -1,8 +1,14 @@
 import { Button } from '@renderer/components/ui/Button'
-import { Card, CardContent, CardHeader, CardTitle } from '@renderer/components/ui/Card'
 import { Avatar, AvatarFallback, AvatarImage } from '@renderer/components/ui/Avatar'
 import { Streamer as StreamerType } from '@renderer/types/streamer'
 import { NavLink } from 'react-router-dom'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@renderer/components/ui/DropdownMenu'
+import { MoreHorizontalIcon } from 'lucide-react'
 
 type Props = {
   streamer: StreamerType
@@ -10,27 +16,29 @@ type Props = {
 
 export const Streamer = ({ streamer }: Props) => {
   return (
-    <Card>
-      <CardHeader
-        className="h-[200px] bg-cover bg-no-repeat relative"
-        style={{ backgroundImage: `url(${streamer.channel.backgroundUrl}` }}
-      >
-        <CardTitle>{streamer.channel.name}</CardTitle>
-        <Avatar className="h-[60px] w-[60px] top-0 right-4 absolute">
+    <div className="flex gap-4 items-center">
+      <div className="flex gap-4 items-center">
+        <Avatar className="h-[60px] w-[60px]">
           <AvatarImage src={streamer.channel.avatarUrl} />
           <AvatarFallback>{streamer.channel.name}</AvatarFallback>
         </Avatar>
-      </CardHeader>
-      <CardContent>
-        <nav className="flex">
-          <Button asChild variant="link" className="uppercase">
+        <div className="text-xl">{streamer.channel.name}</div>
+      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <MoreHorizontalIcon></MoreHorizontalIcon>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>
             <NavLink to={`/last-alerts/${streamer.id}`}>Last alerts</NavLink>
-          </Button>
-          <Button asChild variant="link" className="uppercase">
+          </DropdownMenuItem>
+          <DropdownMenuItem>
             <NavLink to={`/catalogue/${streamer.id}`}>All alerts</NavLink>
-          </Button>
-        </nav>
-      </CardContent>
-    </Card>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   )
 }
