@@ -39,7 +39,7 @@ export const MemeAlert = ({ memeAlert }: Props) => {
     <div className="flex flex-col gap-4 pb-4">
       <div className="relative group">
         <video
-          className="w-[400px]"
+          className="w-[400px] rounded-xl"
           style={{ aspectRatio: memeAlert.videoData.aspectRatio }}
           src={memeAlert.alertUrl}
           controls={false}

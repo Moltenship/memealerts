@@ -5,7 +5,7 @@ import { SearchPage } from './pages/SearchPage'
 
 export const alertRoutes: RouteObject[] = [
   {
-    path: 'last-alerts/:user',
+    path: 'last-alerts/:streamer',
     element: (
       <Suspense fallback={<div>Loading...</div>}>
         <AlertsPage />
@@ -13,7 +13,7 @@ export const alertRoutes: RouteObject[] = [
     )
   },
   {
-    path: 'user-alerts/:user',
+    path: 'streamer-alerts/:streamer',
     element: (
       <Suspense fallback={<div>Loading...</div>}>
         <SearchPage />

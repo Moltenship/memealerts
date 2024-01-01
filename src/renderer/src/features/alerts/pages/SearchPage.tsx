@@ -1,14 +1,14 @@
-import { useGetUser } from '@renderer/queries/useGetUser'
+import { useGetStreamer } from '@renderer/queries/useGetStreamer'
 import { useParams } from 'react-router-dom'
-import { UserAlerts } from '../components/UserAlerts'
+import { UserAlerts } from '../components/StreamerAlerts'
 import { Suspense } from 'react'
 import { AlertsSkeleton } from '../components/Alerts'
 import { OptionsControls, useOptionsControls } from '@renderer/components/ui/OptionsControls'
 
 export const SearchPage = () => {
   const params = useParams()
-  const { data: user } = useGetUser(params.user!)
-  const { options, onPageChange, onSearchChange, searchQuery } = useOptionsControls(user.id)
+  const { data: streamer } = useGetStreamer(params.streamer!)
+  const { options, onPageChange, onSearchChange, searchQuery } = useOptionsControls(streamer.id)
 
   return (
     <div className="flex flex-col gap-4">

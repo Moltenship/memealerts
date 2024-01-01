@@ -1,7 +1,7 @@
-import { User } from '@renderer/types/user'
+import { Streamer } from '@renderer/types/streamer'
 import { apiClient } from './apiClient'
 
-export async function getUser(username: string): Promise<User> {
-  const user = await apiClient.post({ username }, '/user/find').json<User>()
-  return user
+export async function getStreamer(username: string): Promise<Streamer> {
+  const streamer = await apiClient.post({ username }, '/user/find').json<Streamer>()
+  return streamer
 }

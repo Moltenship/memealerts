@@ -1,6 +1,7 @@
 import { Navigate, createHashRouter } from 'react-router-dom'
 import { alertRoutes } from './features/alerts/routes'
 import { MainLayout } from './components/ui/MainLayout'
+import { streamerRoutes } from './features/streamer/routes'
 
 export const router = createHashRouter([
   {
@@ -8,6 +9,7 @@ export const router = createHashRouter([
     element: <MainLayout></MainLayout>,
     children: [
       ...alertRoutes,
+      ...streamerRoutes,
       {
         path: '/',
         element: <Navigate to="/last-alerts/uselessmouth"></Navigate>
