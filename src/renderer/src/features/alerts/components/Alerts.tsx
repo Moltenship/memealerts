@@ -7,7 +7,7 @@ type Props = {
 
 export const Alerts = ({ memeAlerts }: Props) => {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-4 gap-x-4 gap-y-6">
       {memeAlerts.map((memeAlert) => (
         <MemeAlert memeAlert={memeAlert} key={memeAlert.id}></MemeAlert>
       ))}
@@ -17,7 +17,7 @@ export const Alerts = ({ memeAlerts }: Props) => {
 
 export const AlertsSkeleton = () => {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-4 gap-x-4 gap-y-6">
       {[...Array(20)].map((_, i) => (
         <MemeAlertSkeleton key={i}></MemeAlertSkeleton>
       ))}

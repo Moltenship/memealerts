@@ -18,7 +18,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter']
+        sans: ['Unbounded Variable', 'Inter']
       },
       colors: {
         border: 'hsl(var(--border))',

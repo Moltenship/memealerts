@@ -1,15 +1,17 @@
 import { copyVideo } from '@renderer/api/memeAlertsApi'
 import { Button } from '@renderer/components/ui/Button'
-import { Card, CardHeader, CardTitle, CardContent } from '@renderer/components/ui/Card'
-import { Skeleton } from '@renderer/components/ui/skeleton'
+import { Skeleton } from '@renderer/components/ui/Skeleton'
 import { MemeAlert as MemeAlertType } from '@renderer/types/memeAlert'
-import { CopyIcon } from 'lucide-react'
+import { CopyIcon, Volume2Icon, VolumeXIcon } from 'lucide-react'
+import { useState } from 'react'
 import { toast } from 'sonner'
 
 type Props = {
   memeAlert: MemeAlertType
 }
 export const MemeAlert = ({ memeAlert }: Props) => {
+  const [isMuted, setIsMuted] = useState(true)
+
   const handleAlertCopy = () => {
     toast.promise(() => copyVideo(memeAlert.fallbackUrl), {
       loading: 'Copying video to clipboard...',
@@ -17,41 +19,51 @@ export const MemeAlert = ({ memeAlert }: Props) => {
     })
   }
 
+  const handleMuteClick = () => {
+    setIsMuted((m) => !m)
+  }
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-3">
-          {memeAlert.name}
-          <Button variant="ghost" size="sm" onClick={handleAlertCopy}>
-            <CopyIcon size="1rem" />
-          </Button>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
+    <div className="flex flex-col gap-4">
+      <div className="relative group">
         <video
-          className="h-36 w-full object-contain"
+          className="w-[400px]"
+          style={{ aspectRatio: memeAlert.videoData.aspectRatio }}
           src={memeAlert.alertUrl}
           controls={false}
           autoPlay
           loop
-          muted
+          muted={isMuted}
         />
-      </CardContent>
-    </Card>
+        <Button
+          onClick={handleMuteClick}
+          variant="secondary"
+          size="icon"
+          className="invisible group-hover:visible absolute top-2 right-2"
+        >
+          {isMuted ? <VolumeXIcon size="1rem"></VolumeXIcon> : <Volume2Icon size="1rem" />}
+        </Button>
+        <Button
+          variant="secondary"
+          className="absolute invisible group-hover:visible bottom-2 right-2"
+          size="icon"
+          onClick={handleAlertCopy}
+        >
+          <CopyIcon size="1rem" />
+        </Button>
+      </div>
+
+      <span className="text-xl">{memeAlert.name}</span>
+    </div>
   )
 }
 
 export const MemeAlertSkeleton = () => {
+  const height = Math.floor(Math.random() * (550 - 150 + 1) + 150)
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-3">
-          <Skeleton className="h-4 w-[90%]"></Skeleton>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Skeleton className="h-36 w-full object-contain" />
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-4">
+      <Skeleton style={{ height }} className="h-[200px]  max-w-[400px]" />
+      <Skeleton className="h-5 w-3/4"></Skeleton>
+    </div>
   )
 }

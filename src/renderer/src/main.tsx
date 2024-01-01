@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import '@fontsource-variable/unbounded'
 import '@fontsource/inter'
 import './assets/global.css'
 import App from './App'
