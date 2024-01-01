@@ -27,7 +27,7 @@ export const Streamer = ({ streamer }: Props) => {
             <NavLink to={`/last-alerts/${streamer.id}`}>Last alerts</NavLink>
           </Button>
           <Button asChild variant="link" className="uppercase">
-            <NavLink to={`/streamer-alerts/${streamer.id}`}>Search streamer alerts</NavLink>
+            <NavLink to={`/catalogue/${streamer.id}`}>All alerts</NavLink>
           </Button>
         </nav>
       </CardContent>

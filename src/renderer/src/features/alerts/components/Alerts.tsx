@@ -37,7 +37,11 @@ export const Alerts = ({ memeAlerts, onScrollEnd }: Props) => {
         columns={4}
         spacing={16}
         layout="masonry"
-        renderPhoto={({ photo: { meme } }) => <MemeAlert memeAlert={meme}></MemeAlert>}
+        renderPhoto={({ photo: { meme } }) => (
+          <div className="mb-6">
+            <MemeAlert memeAlert={meme} />
+          </div>
+        )}
       ></PhotoAlbum>
     </div>
   )

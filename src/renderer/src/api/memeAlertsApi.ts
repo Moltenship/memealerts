@@ -7,6 +7,7 @@ export type MemeAlertsOptions = {
   pageSize: number
   skip: number
   searchQuery?: string
+  categories?: string[]
 }
 
 export async function getLastAlerts(options: MemeAlertsOptions) {
@@ -16,7 +17,7 @@ export async function getLastAlerts(options: MemeAlertsOptions) {
   return { alerts, next: options.skip + options.pageSize }
 }
 
-export async function getAlerts(options: MemeAlertsOptions) {
+export async function searchAlerts(options: MemeAlertsOptions) {
   const alerts = await apiClient
     .post(
       {
@@ -26,6 +27,14 @@ export async function getAlerts(options: MemeAlertsOptions) {
       '/sticker/streamer-area/search'
     )
     .json<MemeAlert[]>()
+  return { alerts, next: options.skip + options.pageSize }
+}
+
+export async function getAlertsCatalogue(options: MemeAlertsOptions) {
+  const alerts = await apiClient
+    .post({ ...options, categories: [] }, '/sticker/streamer-area/catalogue')
+    .json<MemeAlert[]>()
+
   return { alerts, next: options.skip + options.pageSize }
 }
 

@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom'
 import { AlertsPage } from './pages/AlertsPage'
 import { Suspense } from 'react'
-import { SearchPage } from './pages/SearchPage'
+import { CataloguePage } from './pages/CataloguePage'
 
 export const alertRoutes: RouteObject[] = [
   {
@@ -13,10 +13,10 @@ export const alertRoutes: RouteObject[] = [
     )
   },
   {
-    path: 'streamer-alerts/:streamer',
+    path: 'catalogue/:streamer',
     element: (
       <Suspense fallback={<div>Loading...</div>}>
-        <SearchPage />
+        <CataloguePage />
       </Suspense>
     )
   }

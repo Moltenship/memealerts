@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 import { AlertsSkeleton } from '../components/Alerts'
 import { OptionsControls, useOptionsControls } from '@renderer/components/ui/OptionsControls'
 
-export const SearchPage = () => {
+export const CataloguePage = () => {
   const params = useParams()
   const { options, onPageChange, onSearchChange, searchQuery } = useOptionsControls(
     params.streamer!
