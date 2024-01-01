@@ -3,7 +3,7 @@ import { Button } from '@renderer/components/ui/Button'
 import { Skeleton } from '@renderer/components/ui/Skeleton'
 import { MemeAlert as MemeAlertType } from '@renderer/types/memeAlert'
 import { CopyIcon, Volume2Icon, VolumeXIcon } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 type Props = {
@@ -18,6 +18,18 @@ export const MemeAlert = ({ memeAlert }: Props) => {
       success: 'Copied to clipboard'
     })
   }
+
+  useEffect(() => {
+    if (!isMuted) {
+      toast(`Currently playing ${memeAlert.name}`, {
+        duration: Infinity,
+        action: {
+          label: 'Mute',
+          onClick: () => setIsMuted(true)
+        }
+      })
+    }
+  }, [isMuted, memeAlert.name])
 
   const handleMuteClick = () => {
     setIsMuted((m) => !m)
