@@ -1,8 +1,9 @@
 import { useGetUser } from '@renderer/queries/useGetUser'
 import { FC, Suspense } from 'react'
 import { useParams } from 'react-router-dom'
-import { LastSentAlerts, LastSentAlertsSkeleton } from '../components/LastSentAlerts'
+import { LastSentAlerts } from '../components/LastSentAlerts'
 import { OptionsControls, useOptionsControls } from '@renderer/components/ui/OptionsControls'
+import { AlertsSkeleton } from '../components/Alerts'
 
 export const AlertsPage: FC = () => {
   const params = useParams()
@@ -15,7 +16,7 @@ export const AlertsPage: FC = () => {
         skip={options.skip}
         onPageChange={onPageChange}
       ></OptionsControls>
-      <Suspense fallback={<LastSentAlertsSkeleton></LastSentAlertsSkeleton>}>
+      <Suspense fallback={<AlertsSkeleton></AlertsSkeleton>}>
         <LastSentAlerts options={options}></LastSentAlerts>
       </Suspense>
     </div>

@@ -1,9 +1,11 @@
 import { MemeAlertsOptions, getLastAlerts } from '@renderer/api/memeAlertsApi'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query'
 
 export const useGetLastAlerts = (options: MemeAlertsOptions) => {
-  return useSuspenseQuery({
-    queryKey: ['last-alerts', options],
-    queryFn: () => getLastAlerts(options)
+  return useSuspenseInfiniteQuery({
+    queryKey: ['last-alerts', options.streamerId, options.searchQuery],
+    queryFn: ({ pageParam }) => getLastAlerts({ ...options, skip: pageParam as number }),
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage.next
   })
 }

@@ -55,19 +55,14 @@ export const OptionsControls = ({
 }: Props) => {
   return (
     <div className="flex gap-4 items-center justify-between">
-      <Button size="sm" disabled={skip === 0} onClick={() => onPageChange(skip - pageSize)}>
-        Prev
-      </Button>
       {onSearchChange != null && (
         <Input
           placeholder="Search"
+          className="bg-muted text-muted-foreground"
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
         ></Input>
       )}
-      <Button size="sm" onClick={() => onPageChange(skip + pageSize)}>
-        Next
-      </Button>
     </div>
   )
 }

@@ -17,7 +17,6 @@ function createWindow(): void {
       experimentalFeatures: true
     }
   })
-  console.log(clipboard.availableFormats('clipboard'))
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()

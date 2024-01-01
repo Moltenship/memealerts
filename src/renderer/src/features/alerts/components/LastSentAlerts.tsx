@@ -7,11 +7,14 @@ type Props = {
 }
 
 export const LastSentAlerts = ({ options }: Props) => {
-  const { data } = useGetLastAlerts(options)
-
-  return <Alerts memeAlerts={data}></Alerts>
-}
-
-export const LastSentAlertsSkeleton = () => {
-  return <AlertsSkeleton></AlertsSkeleton>
+  const { data, fetchNextPage, isFetchingNextPage } = useGetLastAlerts(options)
+  return (
+    <div className="flex flex-col gap-16">
+      <Alerts
+        memeAlerts={data.pages.flatMap((p) => p.alerts) ?? []}
+        onScrollEnd={() => fetchNextPage()}
+      ></Alerts>
+      {isFetchingNextPage && <AlertsSkeleton />}
+    </div>
+  )
 }

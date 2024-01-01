@@ -24,7 +24,7 @@ export const MemeAlert = ({ memeAlert }: Props) => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 pb-4">
       <div className="relative group">
         <video
           className="w-[400px]"

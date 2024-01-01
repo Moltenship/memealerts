@@ -1,6 +1,6 @@
 export type VideoData = {
   aspectRatio: number
-  duration: number
+  width: number
   height: number
 }
 

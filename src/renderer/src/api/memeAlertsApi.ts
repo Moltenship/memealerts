@@ -10,10 +10,11 @@ export type MemeAlertsOptions = {
 }
 
 export async function getLastAlerts(options: MemeAlertsOptions) {
+  console.log(options)
   const alerts = await apiClient
     .post(options, '/sticker/streamer-area/last-sent-by-all')
     .json<MemeAlert[]>()
-  return alerts
+  return { alerts, next: options.skip + options.pageSize }
 }
 
 export async function getAlerts(options: MemeAlertsOptions) {
@@ -26,7 +27,7 @@ export async function getAlerts(options: MemeAlertsOptions) {
       '/sticker/streamer-area/search'
     )
     .json<MemeAlert[]>()
-  return alerts
+  return { alerts, next: options.skip + options.pageSize }
 }
 
 export async function getAlertArrayBuffer(alertUrl: string) {
