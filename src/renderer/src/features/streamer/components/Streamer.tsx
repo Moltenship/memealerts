@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger
 } from '@renderer/components/ui/DropdownMenu'
 import { MoreHorizontalIcon } from 'lucide-react'
+import { Skeleton } from '@renderer/components/ui/Skeleton'
 
 type Props = {
   streamer: StreamerType
@@ -39,6 +40,15 @@ export const Streamer = ({ streamer }: Props) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+    </div>
+  )
+}
+
+export const StreamerSkeleton = () => {
+  return (
+    <div className="flex gap-4 items-center">
+      <Skeleton className="rounded-full h-[60px] w-[60px]"></Skeleton>
+      <Skeleton className="h-5 w-3/4"></Skeleton>
     </div>
   )
 }
