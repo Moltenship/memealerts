@@ -34,7 +34,12 @@ export const Alerts = ({ memeAlerts, onScrollEnd }: Props) => {
           src: meme.alertAnimatedPreview,
           meme
         }))}
-        columns={4}
+        columns={(containerWidth) => {
+          if (containerWidth < 480) return 1
+          if (containerWidth < 768) return 2
+          if (containerWidth < 960) return 3
+          return 4
+        }}
         spacing={16}
         layout="masonry"
         renderPhoto={({ photo: { meme } }) => (
