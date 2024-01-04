@@ -12,6 +12,7 @@ type Props = {
 export const MemeAlert = ({ memeAlert }: Props) => {
   const [isMuted, setIsMuted] = useState(true)
   const toastIdRef = useRef<string | number | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   const handleAlertCopy = () => {
     toast.promise(() => copyVideo(memeAlert.fallbackUrl), {
@@ -43,6 +44,9 @@ export const MemeAlert = ({ memeAlert }: Props) => {
   }, [isMuted, memeAlert.name])
 
   const handleMuteClick = () => {
+    if (videoRef.current !== null && isMuted) {
+      videoRef.current.currentTime = 0
+    }
     setIsMuted((m) => !m)
   }
 
@@ -56,6 +60,7 @@ export const MemeAlert = ({ memeAlert }: Props) => {
           controls={false}
           autoPlay
           loop
+          ref={videoRef}
           playsInline
           muted={isMuted}
         />
