@@ -1,10 +1,10 @@
 {
   "name": "memealerts",
   "version": "1.0.0",
-  "description": "An Electron application with React and TypeScript",
+  "description": "A desktop app for copying memealerts into clipboard to paste into discord/telegram",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://www.electronjs.org",
+  "author": "Moltenship",
+  "homepage": "https://www.github.com/moltenship/memealerts",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
