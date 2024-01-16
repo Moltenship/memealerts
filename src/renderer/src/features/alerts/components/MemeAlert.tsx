@@ -82,7 +82,7 @@ export const MemeAlert = ({ memeAlert }: Props) => {
         </Button>
       </div>
 
-      <span className="text-xl">{memeAlert.name}</span>
+      <span className="text-xl break-words min-w-0">{memeAlert.name}</span>
     </div>
   )
 }

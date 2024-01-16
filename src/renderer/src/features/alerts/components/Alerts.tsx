@@ -43,7 +43,7 @@ export const Alerts = ({ memeAlerts, onScrollEnd }: Props) => {
         spacing={16}
         layout="masonry"
         renderPhoto={({ photo: { meme } }) => (
-          <div className="mb-6">
+          <div className="mb-6 w-full">
             <MemeAlert memeAlert={meme} />
           </div>
         )}
