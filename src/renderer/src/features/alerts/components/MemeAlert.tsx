@@ -56,7 +56,7 @@ export const MemeAlert = ({ memeAlert }: Props) => {
         <video
           className="w-[400px] rounded-xl"
           style={{ aspectRatio: memeAlert.videoData.aspectRatio }}
-          src={memeAlert.alertUrl}
+          src={memeAlert.stickerUrl}
           controls={false}
           autoPlay
           loop
